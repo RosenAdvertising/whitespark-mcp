@@ -1,0 +1,40 @@
+[project]
+name = "whitespark-mcp"
+version = "0.1.0"
+description = "An MCP server for documented Whitespark Local Ranking Grids reads."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "httpx>=0.28.1,<0.29",
+    "mcp>=2.3,<3",
+]
+
+[project.scripts]
+whitespark-mcp-setup = "whitespark_mcp.setup:setup"
+whitespark-mcp-verify = "whitespark_mcp.setup:verify"
+whitespark-mcp = "whitespark_mcp.server:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-asyncio>=1.3.0",
+    "respx>=0.22.0,<0.23",
+    "ruff>=0.12.7,<0.13",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
